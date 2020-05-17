@@ -22,3 +22,7 @@ Run the following command to install dependencies & Open the console to see logs
 npm i
 npm start
 ```
+
+### How does it work?
+
+TODO: Write an article
