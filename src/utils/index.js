@@ -10,7 +10,6 @@ export const getAvionDBCollection = async (options, callback) => {
         window.ipfs = ipfs;
         await ipfs.swarm.connect(
           "/dnsaddr/node1.dappkit.io/tcp/6969/wss/p2p/QmfLwmXF25u1n5pD8yXcbmZew3td66qPU1FroWNrkxS4bt"
-          //"/ip4/3.16.114.163/tcp/4003/ws/p2p/QmfLwmXF25u1n5pD8yXcbmZew3td66qPU1FroWNrkxS4bt"
         );
         aviondb = await window.AvionDB.init("database-test-3", ipfs);
         collection = await aviondb.initCollection("collection-test-3");
@@ -28,7 +27,6 @@ export const getAvionDBCollection = async (options, callback) => {
       let id = await ipfs.id();
       await ipfs.swarm.connect(
         "/dnsaddr/node1.dappkit.io/tcp/6969/wss/p2p/QmfLwmXF25u1n5pD8yXcbmZew3td66qPU1FroWNrkxS4bt"
-        //"/ip4/3.16.114.163/tcp/4003/ws/p2p/QmfLwmXF25u1n5pD8yXcbmZew3td66qPU1FroWNrkxS4bt"
       );
       syncDatabase(ipfs, options, callback);
   }
