@@ -25,6 +25,18 @@ export const getTodoList = () => async (dispatch) => {
   });
 };
 
+export const refreshTodoList = () => async (dispatch) => {
+  const { collection, ipfs } = await getAvionDBCollection(options);
+  const id = await ipfs.id();
+  const todos = await collection.find({});
+  console.log("TODOs: ", todos);
+  dispatch({
+    type: types.REFRESH_TODOS,
+    payload: todos,
+    addedInterval: true,
+  });
+};
+
 export const getDatabaseAddress = () => async (dispatch) => {
   const ipfs = await (await getAvionDBCollection(options)).ipfs;
   const id = await ipfs.id();

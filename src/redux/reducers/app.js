@@ -5,6 +5,7 @@ const initialState = {
   todoList: [],
   loaded: false,
   address: null,
+  addedInterval: false,
 };
 
 export default (state = initialState, action) => {
@@ -21,6 +22,12 @@ export default (state = initialState, action) => {
         todoList: [...state.todoList, ...action.payload],
         address: action.id,
         loaded: true,
+      };
+    case types.REFRESH_TODOS:
+      return {
+        ...state,
+        todoList: [...action.payload],
+        addedInterval: true,
       };
     case types.GET_DB_ADDR:
       return {

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import {
   addTodoItem,
   getTodoList,
+  refreshTodoList,
   updateTodoItem,
   getDatabaseAddress,
 } from "../../redux/actions/todolist";
@@ -15,9 +16,11 @@ function TodoList(props) {
   const {
     addTodoItem,
     getTodoList,
+    refreshTodoList,
     updateTodoItem,
     getDatabaseAddress,
     user,
+    addedInterval,
     todoList,
     loaded,
     address,
@@ -29,6 +32,11 @@ function TodoList(props) {
 
   if (!loaded) {
     getTodoList();
+  }
+  if (!addedInterval && address) {
+    setInterval(() => {
+      refreshTodoList();
+    }, 100);
   }
 
   return (
@@ -59,8 +67,6 @@ function TodoList(props) {
             </button>
           </div>
         </div>
-        <br />
-        <br />
         <br />
         {address ? (
           <Fragment>
@@ -94,6 +100,7 @@ const mapStateToProps = (state) => ({
   user: state.app.user,
   todoList: state.app.todoList,
   loaded: state.app.loaded,
+  addedInterval: state.app.addedInterval,
   address: state.app.address,
 });
 
@@ -101,6 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
   addTodoItem: (payload) => dispatch(addTodoItem(payload)),
   updateTodoItem: (payload) => dispatch(updateTodoItem(payload)),
   getTodoList: () => dispatch(getTodoList()),
+  refreshTodoList: () => dispatch(refreshTodoList()),
   getDatabaseAddress: () => dispatch(getDatabaseAddress()),
 });
 
